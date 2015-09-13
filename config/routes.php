@@ -24,10 +24,14 @@
     HelloWorldController::leiripaikka();
   });
   
-    $routes->get('/muokkaa_hakemusta', function() {
-    HelloWorldController::muokkaa_hakemusta();
-  });
-  
     $routes->get('/profiilisivu', function() {
     HelloWorldController::profiilisivu();
+  });
+  
+      $routes->get('/kirjaudu', function() {
+    HelloWorldController::kirjaudu();
+  });
+  
+      $routes->get('/rekisteroidy', function() {
+    HelloWorldController::rekisteroidy();
   });

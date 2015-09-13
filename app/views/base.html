@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <title>
       {% block title %}
         Tietokantasovellus
@@ -37,10 +37,16 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
-          <ul class="nav navbar-nav">
-            <!-- Navigaation linkit -->
+
+            <ul class="nav navbar-nav">
             <li><a href="{{base_path}}">Etusivu</a></li>
           </ul>
+            <ul class="nav navbar-nav">
+            <li><a href="/leirikanta/leirilista">Leirit</a></li>
+          </ul>
+            <ul class="nav navbar-nav">
+            <li><a href="/leirikanta/hakemus">Oma hakemuksesi</a></li>
+          </ul> 
         </div>
       </div>
     </nav>
