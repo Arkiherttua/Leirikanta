@@ -21,15 +21,15 @@ CREATE TABLE Kayttaja(
     tunnus varchar(50) NOT NULL,
     password varchar(50) NOT NULL, --emt onko password jotenkin taikasana niin olkoon enkuksi
     email varchar(50) NOT NULL,
-    syntymaaika DATE NOT NULL
+    syntymaaika DATE NOT NULL,
+    onkoJohtaja boolean DEFAULT FALSE
 );
 
 CREATE TABLE Hakemus(
     id SERIAL PRIMARY KEY,
     kayttaja_id INTEGER REFERENCES Kayttaja(id),
     kokemus text,
-    vapaaKuvaus text,
-    onkoJohtaja BOOLEAN DEFAULT FALSE,
+    vapaaKuvaus text
 );
 
 CREATE TABLE Leiriohjaajuus(
