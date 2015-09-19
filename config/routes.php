@@ -8,8 +8,8 @@
     HelloWorldController::sandbox();
   });
   
-   $routes->get('/leiri', function() {
-    HelloWorldController::leiri();
+   $routes->get('/leiri/:id', function($id) {
+       leiricontroller::leiri();
   });
   
     $routes->get('/hakemus', function() {
@@ -17,7 +17,7 @@
   });
   
     $routes->get('/leirilista', function() {
-    HelloWorldController::leirilista();
+    leiricontroller::leirilista();
   });
   
     $routes->get('/leiripaikka', function() {

@@ -6,22 +6,23 @@
     <thead>
       <tr>
         <th>Nimi</th>
-        <th>Aika</th>
-        <th></th>
+        <th>Alkupäivä</th>
+        <th>Loppupäivä</th>
+        <th>Leiriläisten ikä</th>
+        <th>Leiripaikka</th>
       </tr>
     </thead>
 
     <tbody>
+        {% for leiri in leirit %}
       <tr>
-        <td><a href="#">Alkukesän lastenleiri Saaressa</a></td>
-        <td>1.-6.6.</td>
-        <th><a class="btn btn-default btn-sm" href="#">Lisätiedot</a></th>
+        <td><a href="{{base_path}}/leiri/{{leiri.id}}">{{leiri.leirinnimi}}</a></td>
+        <td>{{leiri.alkupv}}</td>
+        <td>{{leiri.loppupv}}</td>
+        <td>{{leiri.leirilaistenIka}}</td>
+        <td>{{leiri.leiripaikka}}</td>
       </tr>
-            <tr>
-        <td><a href="#">Loppukesän lastenleiri Saaressa</a></td>
-        <td>1.-6.8.</td>
-        <th><a class="btn btn-default btn-sm" href="#">Lisätiedot</a></th>
-      </tr>
+        {% endfor %}
     </tbody>
   </table>
 {% endblock %}
