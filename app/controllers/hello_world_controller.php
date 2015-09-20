@@ -13,7 +13,7 @@
     }
     
         public static function hakemus(){
-      View::make('hakemus.html');
+      View::make('hakemukset/hakemus.html');
     }
     
         public static function leiri(){

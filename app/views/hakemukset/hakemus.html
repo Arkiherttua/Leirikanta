@@ -2,7 +2,7 @@
 {% block content %}
   <h1>Hakemus leirille töihin</h1>
 
-  <form>
+  <form method = "post" action = "{{base_path}}" >
     <div class="radio">
       <label>
         <input type="radio" name="ohjaajako" id="joh" value="joh">
@@ -25,20 +25,15 @@
       
     <div class="form-group">
       <label>Nimi</label>
-      <input class="form-control" value="Minttupetteri Virtanen" type="text">
-    </div>
-    <div class="form-group">
-      <label>Syntymäaika</label>
-      <input class="form-control" value="1.1.1999" type="text">
+      <input class="form-control" name="nimi" type="text">
     </div>
     <div class="form-group">
       <label>Työkokemus</label>
-      <input class="form-control" value="ei ole" type="text">
+      <input class="form-control" name="kokemus" type="text">
     </div>
     <div class="form-group">
       <label>Vapaa kuvaus itsestäsi</label>
-      <textarea class="form-control"> Tykkään kesäleireistä!
-      </textarea>
+      <textarea name="kuvaus" class="form-control"></textarea>
     </div>
       <div>
           Mille leireille haluaisit? (Merkitse kaikki sopivat)

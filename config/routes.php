@@ -12,12 +12,25 @@
        leiricontroller::leiri();
   });
   
-    $routes->get('/hakemus', function() {
-    HelloWorldController::hakemus();
+    $routes->post('/hakemukset/hakemus', function() {
+        leiricontroller::luo_hakemus();
   });
   
+    $routes->get('/hakemukset/hakemus/:id', function($id) {
+        leiricontroller::nayta_hakemus();
+    });
+    
+    //tää lienee turha
+     $routes->get('/hakemukset/hakemus', function() {
+        HelloWorldController::hakemus();
+  }); 
     $routes->get('/leirilista', function() {
     leiricontroller::leirilista();
+  });
+  
+        
+    $routes->get('/hakemukset/hakemuslista', function() {
+    leiricontroller::hakemuslista();
   });
   
     $routes->get('/leiripaikka', function() {
