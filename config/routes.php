@@ -33,12 +33,11 @@
         HelloWorldController::hakemus();
   }); 
     $routes->get('/leirilista', function() {
-    leiricontroller::leirilista();
+        leiricontroller::leirilista();
   });
-  
         
     $routes->get('/hakemukset/hakemuslista', function() {
-    leiricontroller::hakemuslista();
+        leiricontroller::hakemuslista();
   });
   
     $routes->get('/leiripaikka', function() {

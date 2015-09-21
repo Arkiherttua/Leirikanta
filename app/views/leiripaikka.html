@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Yhä staattinen leiripaikkasivu</h1>
+  <h1>Leiripaikka: {{paikka.paikannimi}}</h1>
 
+  
   <ul>
-    <li><strong>Leiripaikan sijainti</strong> Saari, Suomi, Eurooppa</li>
-    <li><strong>Nettisivu</strong> <a href="http://wikipedia.org">Wikipediassa tietoa</a></li>
-    <li><strong>Ruokahuolto:</strong> ei omaa kokkia</li>
-    <li><strong>Leiripaikan kuvaus</strong> Hieno paikka. Sauna, merenranta, kanootteja, ankkalampi, katos</li>
+    <li><strong>Leiripaikan sijainti:</strong> {{paikka.sijainti}}</li>
+    <li><strong> <a href="http://{{paikka.nettisivu}}">Nettisivu</a></li> </strong>
+    <li><strong>Ruokahuolto:</strong> {{paikka.kokki}}</li>
+    <li><strong>Leiripaikan kuvaus:</strong> {{paikka.kuvaus}}</li>
     
   </ul>
   
