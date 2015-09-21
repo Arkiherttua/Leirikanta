@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Kaikki kesän leiripaikat</h1>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Paikannimi</th>
+        <th>sijainti</th>
+        <th>nettisivu</th>
+        <th>palkataanko leirille kokki</th>
+        <th>kuvaus</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for paikka in paikat %}
+      <tr>
+        <td><a href="{{base_path}}/leiripaikka/{{paikka.id}}">Paikannimi{{paikka.paikannimi}}</a></td>
+        <td>{{paikka.sijainti}}</td>
+        <td>{{paikka.nettisivu}}</td>
+        <td>{{paikka.kokki}}</td>
+        <td>{{paikka.kuvaus}}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+

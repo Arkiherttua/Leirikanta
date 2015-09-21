@@ -12,6 +12,14 @@
        leiricontroller::leiri($id);
   });
   
+   $routes->get('/leiripaikka/:id', function($id) {
+       leiricontroller::leiripaikka($id);
+  });
+  
+   $routes->get('/leiripaikat', function() {
+       leiricontroller::leiripaikat();
+  });
+  
     $routes->post('/hakemukset', function() {
         leiricontroller::luo_hakemus();
   });

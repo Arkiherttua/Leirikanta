@@ -7,10 +7,23 @@ class leiricontroller extends BaseController {
         View::make('leirilista.html', array('leirit'=> $leirit));
     }
     
-        public static function hakemuslista() {
+    public static function hakemuslista() {
         $hakemukset = Hakemus::kaikki();
         View::make('hakemukset/hakemuslista.html', array('hakemukset'=> $hakemukset));
     }
+    
+
+    public static function leiripaikat() {
+        $paikat = Leiripaikka::kaikki();
+        View::make('leiripaikat.html', array('paikat'=> $paikat));
+    }
+    
+    public function leiripaikka($id) {
+        $paikka = Leiripaikka::etsi($id);
+        View::make('leiripaikka.html', array('paikka'=> $paikka));
+    }
+    
+    
     
         //tätä modataan vielä:
     public function leiri($id) {
@@ -32,6 +45,7 @@ class leiricontroller extends BaseController {
     public static function luo_hakemus() {
         $params = $_POST;
         $hakemus = new Hakemus(array(
+            'kayttaja_id' => '1', //kaunista purkkaa
             'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
             'vapaaKuvaus' => $params['vapaaKuvaus']
