@@ -9,15 +9,15 @@
   });
   
    $routes->get('/leiri/:id', function($id) {
-       leiricontroller::leiri();
+       leiricontroller::leiri($id);
   });
   
-    $routes->post('/hakemukset/hakemus', function() {
+    $routes->post('/hakemukset', function() {
         leiricontroller::luo_hakemus();
   });
   
     $routes->get('/hakemukset/hakemus/:id', function($id) {
-        leiricontroller::nayta_hakemus();
+        leiricontroller::nayta_hakemus($id);
     });
     
     //tää lienee turha
