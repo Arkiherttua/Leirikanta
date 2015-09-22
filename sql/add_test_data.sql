@@ -6,4 +6,4 @@ INSERT INTO Leiri (leirinnimi, leirilaistenIka, leiripaikka_id) VALUES ('Saaren 
 INSERT INTO Leiri (leirinnimi, alkupv, loppupv, leirilaistenIka, leiripaikka_id) VALUES ('Saaren loppukesän lastenleiri', '2015-08-01', '2015-08-06', '7-12 v', '1');
 INSERT INTO Leiri (leirinnimi, alkupv, loppupv, leirilaistenIka, leiripaikka_id) VALUES ('Päiväleiri', '2015-08-01', '2015-08-06', '7-10 v', '3');
 
-INSERT INTO Kayttaja (tunnus, password, email, syntymaaika) VALUES ('user', 'salasana', 'user@hotmail.com', '1990-01-01');
+INSERT INTO Kayttaja (tunnus, nimi, salasana, email, syntymaaika) VALUES ('user', 'Minttupetteri', 'salasana', 'user@hotmail.com', '1990-01-01');

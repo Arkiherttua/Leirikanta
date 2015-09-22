@@ -10,14 +10,14 @@ class usercontroller extends BaseController{
     public static function handle_login(){
     $params = $_POST;
 
-    $kayttaja = Kayttaja::authenticate($params['tunnus'], $params['password']);
+    $kayttaja = Kayttaja::authenticate($params['tunnus'], $params['salasana']);
 
-    if(!$user){
-      View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'tunnus' => $params['tunnus']));
+    if(!$kayttaja){
+      View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana.', 'tunnus' => $params['tunnus']));
     }else{
       $_SESSION['kayttaja'] = $kayttaja->id;
 
-      Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $kayttaja->tunnus . '!'));
+      Redirect::to('/', array('message' => 'Tervetuloa ' . $kayttaja->tunnus . '!'));
     }
   }
 }

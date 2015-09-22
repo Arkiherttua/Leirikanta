@@ -22,7 +22,7 @@ class Hakemus extends BaseModel {
         $hakemukset = array();
 
         //käyttäjän tiedot mukaan!
-        $query2 = DB::connection()->prepare('SELECT tunnus, Kayttaja.id, kayttaja_id FROM Kayttaja, Hakemus WHERE Kayttaja.id = kayttaja_id');
+        $query2 = DB::connection()->prepare('SELECT nimi, Kayttaja.id, kayttaja_id FROM Kayttaja, Hakemus WHERE Kayttaja.id = kayttaja_id');
         $query2->execute();
         $rivit2 = $query2->fetchAll();
         $idt = array();

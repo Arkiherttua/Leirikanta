@@ -19,7 +19,8 @@ CREATE TABLE Leiri(
 CREATE TABLE Kayttaja(
     id SERIAL PRIMARY KEY,
     tunnus varchar(50) NOT NULL,
-    password varchar(50) NOT NULL, --emt onko password jotenkin taikasana niin olkoon enkuksi
+    nimi varchar(50) NOT NULL,
+    salasana varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
     syntymaaika DATE NOT NULL,
     onkoJohtaja boolean DEFAULT FALSE
