@@ -50,7 +50,7 @@ class Hakemus extends BaseModel {
                 'id' => $rivi['id'],
                 'kayttaja_id' => $rivi['kayttaja_id'],
                 'kokemus' => $rivi['kokemus'],
-                'vapaaKuvaus' => $rivi['vapaaKuvaus']
+                //'vapaaKuvaus' => $rivi['vapaaKuvaus']
             ));
             return $hakemus;
         }

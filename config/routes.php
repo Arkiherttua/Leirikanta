@@ -8,6 +8,16 @@
     HelloWorldController::sandbox();
   });
   
+  $routes -> get('/login', function() {
+      usercontroller:login();
+  });
+  
+  
+  $routes -> post('/login', function() {
+      usercontroller:handle_login();
+  });
+  
+  
    $routes->get('/leiri/:id', function($id) {
        leiricontroller::leiri($id);
   });
