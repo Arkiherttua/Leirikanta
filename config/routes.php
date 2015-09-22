@@ -9,12 +9,16 @@
   });
   
   $routes -> get('/login', function() {
-      usercontroller:login();
+      usercontroller::login();
   });
   
   
   $routes -> post('/login', function() {
-      usercontroller:handle_login();
+      usercontroller::handle_login();
+  });
+  
+  $routes->post('/rekisteroidy', function() {
+        usercontroller::luo_kayttaja();
   });
   
   

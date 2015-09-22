@@ -39,7 +39,7 @@ class Hakemus extends BaseModel {
 
         return $hakemukset;
     }
-
+    
     public static function etsi($id) {
         $query = DB::connection()->prepare('SELECT * FROM Hakemus WHERE id = :id LIMIT 1');
         $query->execute(array(('id') => $id));

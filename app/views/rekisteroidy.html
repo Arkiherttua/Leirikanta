@@ -2,30 +2,33 @@
 {% block content %}
   <h1>Rekisteröidy</h1>
   
-  Rekisteröidyttyäsi voit hakea leiriohjaajaksi tai -johtajaksi.
+  Rekisteröidyttyäsi voit hakea leiriohjaajaksi tai -johtajaksi. <br>
+  Protip: salasanoja ei ole vielä salattu kantaan, joten ÄLÄ KÄYTÄ minkään oikean vakavan sivuston salasanaa.
 
-  <!-- Kaikki lomakkeen elementit form-tagin sisään -->
-  <form>
-
+  <form method="post" action="{{base_path}}/rekisteroidy">
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input class="form-control" type="text">
+      <input class="form-control" name = "tunnus" type="text">
+    </div>
+      
+    <div class="form-group">
+      <label>Salasana</label>
+      <input class="form-control" name = "salasana" type="password">
     </div>
       
     <div class="form-group">
       <label>Etu- ja sukunimi</label>
-      <input class="form-control" type="text">
+      <input class="form-control" name = "nimi" type="text">
     </div>
       
     <div class="form-group">
       <label>Sähköpostiosoite</label>
-      <input class="form-control" type="text">
+      <input class="form-control" name = "email" type="text">
     </div>
 
-
     <div class="form-group">
-      <label>Salasana</label>
-      <input class="form-control" type="password">
+      <label>Syntymäaika muodossa vvvv-kk-pp</label>
+      <input class="form-control" name = "syntymaaika" type="text">
     </div>
 
     <button type="submit" class="btn btn-primary">Rekisteröidy</button>

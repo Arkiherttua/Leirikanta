@@ -3,6 +3,20 @@
 class usercontroller extends BaseController{
     
     
+    public static function luo_kayttaja() {
+        $params = $_POST;
+        $kayttaja = new Kayttaja(array(
+            'tunnus' => 'tunnus',
+            'nimi' => $params['nimi'],
+            'salasana' => $params['salasana'],
+            'email' => $params['email'],
+            'syntymaaika' => $params['syntymaaika']
+        ));
+        //Kint::dump($params);
+        $kayttaja->tallenna();
+        Redirect::to('/' . $kayttaja->id, array('message' => 'Rekisteröityminen onnistui'));
+    }
+    
     public static function login() { 
         View::make('login.html');
     }
