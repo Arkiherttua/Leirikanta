@@ -8,12 +8,12 @@
     HelloWorldController::sandbox();
   });
   
-  $routes -> get('/login', function() {
+  $routes -> get('/kirjaudu', function() {
       usercontroller::login();
   });
   
   
-  $routes -> post('/login', function() {
+  $routes -> post('/kirjaudu', function() {
       usercontroller::handle_login();
   });
   

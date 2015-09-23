@@ -14,11 +14,11 @@ class usercontroller extends BaseController{
         ));
         //Kint::dump($params);
         $kayttaja->tallenna();
-        Redirect::to('/' . $kayttaja->id, array('message' => 'Rekisteröityminen onnistui'));
+        Redirect::to('/', array('viesti' => 'Rekisteröityminen onnistui, nyt voit kirjautua sisään!'));
     }
     
     public static function login() { 
-        View::make('login.html');
+        View::make('kirjaudu.html');
     }
     
     public static function handle_login(){
@@ -27,7 +27,7 @@ class usercontroller extends BaseController{
     $kayttaja = Kayttaja::authenticate($params['tunnus'], $params['salasana']);
 
     if(!$kayttaja){
-      View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana.', 'tunnus' => $params['tunnus']));
+      View::make('kirjaudu.html', array('error' => 'Väärä käyttäjätunnus tai salasana.', 'tunnus' => $params['tunnus']));
     }else{
       $_SESSION['kayttaja'] = $kayttaja->id;
 

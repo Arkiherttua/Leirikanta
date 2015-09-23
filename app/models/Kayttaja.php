@@ -15,10 +15,10 @@ class Kayttaja extends BaseModel {
     }
     
     public function authenticate($params) {
-        $tunnus = $params[0];
-        $salasana = $params[1];
+        $tunnus = $params['tunnus'];
+        $salasana = $params['salasana'];
         $query = DB::connection()->prepare('SElECT * FROM Kayttaja WHERE tunnus = :tunnus AND salasana = :salasana LIMIT 1', array('tunnus'=>$tunnus, 'salasana'=> $salasana));
-        $query ->execute();
+        $query ->execute(array('tunnus' => $tunnus, 'salasana' => $salasana));
         $rivi = $query->fetch();
         if ($rivi) {
             $kayttaja = new Kayttaja(array(
