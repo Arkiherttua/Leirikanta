@@ -6,13 +6,13 @@ class usercontroller extends BaseController{
     public static function luo_kayttaja() {
         $params = $_POST;
         $kayttaja = new Kayttaja(array(
-            'tunnus' => 'tunnus',
+            'tunnus' => $params['tunnus'],
             'nimi' => $params['nimi'],
             'salasana' => $params['salasana'],
             'email' => $params['email'],
-            'syntymaaika' => $params['syntymaaika']
+            'syntymaaika' => $params['syntymaaika'],
+            'onkoJohtaja' => 'false' //toiminee näin...
         ));
-        //Kint::dump($params);
         $kayttaja->tallenna();
         Redirect::to('/', array('viesti' => 'Rekisteröityminen onnistui, nyt voit kirjautua sisään!'));
     }
@@ -31,7 +31,7 @@ class usercontroller extends BaseController{
     }else{
       $_SESSION['kayttaja'] = $kayttaja->id;
 
-      Redirect::to('/', array('message' => 'Tervetuloa ' . $kayttaja->tunnus . '!'));
+      Redirect::to('/', array('viesti' => 'Tervetuloa ' . $kayttaja->tunnus . '!'));
     }
   }
 }
