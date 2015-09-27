@@ -44,15 +44,22 @@ class leiricontroller extends BaseController {
     
     public static function luo_hakemus() {
         $params = $_POST;
-        $hakemus = new Hakemus(array(
+        $attributes = (array(
             'kayttaja_id' => '1', //kaunista purkkaa
             'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
             'vapaaKuvaus' => $params['vapaaKuvaus']
         ));
-        //Kint::dump($params);
-        $hakemus->tallenna();
-        Redirect::to('/hakemukset/' . $hakemus->id, array('message' => 'Hakemus vastaanotettu.'));
+        $hakemus = new Hakemus($attributes);
+        $errors = $hakemus->errors();
+        
+        if (count($errors) == 0 ) {
+            $hakemus->tallenna();
+            Redirect::to('/hakemukset/' . $hakemus->id, array('viesti' => 'Hakemus vastaanotettu.'));
+        } else {
+            View::make('/hakemukset/hakemus.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
+            
     }
     
   

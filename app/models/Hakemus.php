@@ -6,6 +6,7 @@ class Hakemus extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoi_kuvaus', 'validoi_kokemus');
     }
 
     public function tallenna() {
@@ -27,7 +28,7 @@ class Hakemus extends BaseModel {
         $rivit2 = $query2->fetchAll();
         $idt = array();
         //nämä Hakemus-olion muuttujaan talteen, tai vielä mieluummin tietty käyttäjän oikea nimi
-        
+
         foreach ($rivit as $rivi) {
             $hakemukset[] = new Hakemus(array(
                 'id' => $rivi['id'],
@@ -39,7 +40,7 @@ class Hakemus extends BaseModel {
 
         return $hakemukset;
     }
-    
+
     public static function etsi($id) {
         $query = DB::connection()->prepare('SELECT * FROM Hakemus WHERE id = :id LIMIT 1');
         $query->execute(array(('id') => $id));
@@ -50,11 +51,27 @@ class Hakemus extends BaseModel {
                 'id' => $rivi['id'],
                 'kayttaja_id' => $rivi['kayttaja_id'],
                 'kokemus' => $rivi['kokemus'],
-                //'vapaaKuvaus' => $rivi['vapaaKuvaus']
+                    //'vapaaKuvaus' => $rivi['vapaaKuvaus']
             ));
             return $hakemus;
         }
         return null;
+    }
+
+    public function validoi_kokemus() {
+        $errors = array();
+        if ($this->{validoi_merkkijonon_pituus}($this->kokemus, 2, 10000)) {
+            $errors[] = $this->{validoi_merkkijonon_pituus}($this->kokemus, 2, 10000);
+        }
+        return $errors;
+    }
+
+    public function validoi_kuvaus() {
+        $errors = array();
+        if ($this->{validoi_merkkijonon_pituus}($this->vapaaKuvaus, 20, 100000)) {
+            $errors[] = $this->{validoi_merkkijonon_pituus}($this->vapaaKuvaus, 10, 10000);
+        }
+        return $errors;
     }
 
 }

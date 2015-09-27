@@ -3,7 +3,19 @@
   class BaseModel{
     // "protected"-attribuutti on käytössä vain luokan ja sen perivien luokkien sisällä
     protected $validators;
-
+    
+    public function validoi_merkkijonon_pituus($sana, $min, $max) {
+        $errors = array();
+        if (strlen($sana) < min || $sana == null) {
+            $errors[] = 'Liian lyhyt merkkijono!';
+        }
+        if (strlen($sana) > max) {
+            $errors = 'Liian pitkä merkkijono!';
+        }
+        return $errors;
+    }
+    
+    
     public function __construct($attributes = null){
       // Käydään assosiaatiolistan avaimet läpi
       foreach($attributes as $attribute => $value){
@@ -16,10 +28,11 @@
     }
 
     public function errors(){
-      // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
       $errors = array();
 
       foreach($this->validators as $validator){
+          $validator_errors = array($validator);
+          $errors = array_merge($errors, $validator_errors);
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
       }
 
