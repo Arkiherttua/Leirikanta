@@ -22,6 +22,9 @@
   });
   
   
+  
+  
+  
    $routes->get('/leiri/:id', function($id) {
        leiricontroller::leiri($id);
   });
@@ -34,6 +37,10 @@
        leiricontroller::leiripaikat();
   });
   
+  
+  
+  
+  
     $routes->post('/hakemukset', function() {
         leiricontroller::luo_hakemus();
   });
@@ -43,7 +50,7 @@
     });
     
     //tää lienee turha
-     $routes->get('/hakemukset/hakemus', function() {
+     $routes->get('/hakemukset/uusi', function() {
         HelloWorldController::hakemus();
   }); 
     $routes->get('/leirilista', function() {

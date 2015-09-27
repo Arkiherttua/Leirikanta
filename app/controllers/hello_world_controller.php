@@ -11,7 +11,7 @@
     }
     
         public static function hakemus(){
-      View::make('hakemukset/hakemus.html');
+      View::make('hakemukset/uusi.html');
     }
     
         public static function leiri(){

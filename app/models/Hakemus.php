@@ -60,16 +60,19 @@ class Hakemus extends BaseModel {
 
     public function validoi_kokemus() {
         $errors = array();
-        if ($this->{validoi_merkkijonon_pituus}($this->kokemus, 2, 10000)) {
-            $errors[] = $this->{validoi_merkkijonon_pituus}($this->kokemus, 2, 10000);
+        if (strlen($this->kokemus) < 2 || $this->kokemus == null) {
+            $errors = 'Liian lyhyt teksti kokemus-kentässä!';
         }
+//        if ($this->validoi_merkkijonon_pituus($this->kokemus, 2, 10000)) {
+//            $errors[] = $this->validoi_merkkijonon_pituus($this->kokemus, 2, 10000);
+//        }
         return $errors;
     }
 
     public function validoi_kuvaus() {
         $errors = array();
-        if ($this->{validoi_merkkijonon_pituus}($this->vapaaKuvaus, 20, 100000)) {
-            $errors[] = $this->{validoi_merkkijonon_pituus}($this->vapaaKuvaus, 10, 10000);
+        if (strlen($this->vapaaKuvaus) < 10 || $this->vapaaKuvaus == null) {
+            $errors = 'Liian lyhyt teksti kuvaus-kentässä!';
         }
         return $errors;
     }
