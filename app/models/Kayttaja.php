@@ -83,24 +83,34 @@ class Kayttaja extends BaseModel {
     
     public function validoi_tunnus() {
         $errors = array();
-        if ($this->{validoi_merkkijonon_pituus}($this->tunnus, 4, 50)) {
-            $errors[] = $this->{validoi_merkkijonon_pituus}($this->tunnus, 4, 50);
+        if (strlen($this->tunnus) < 4 || $this->tunnus == null) {
+            $errors = 'Liian lyhyt käyttäjätunnus!';
+        }
+        
+        if (strlen($this->tunnus) > 50) {
+            $errors = 'Liian pitkä käyttäjätunnus!';
         }
         return $errors;
     }
     
     public function validoi_salasana() {
         $errors = array();
-        if ($this->{validoi_merkkijonon_pituus}($this->kokemus, 6, 50)) {
-            $errors[] = $this->{validoi_merkkijonon_pituus}($this->kokemus, 6, 50);
+        if (strlen($this->salasana) < 6 || $this->salasana == null) {
+            $errors = 'Liian lyhyt salasana!';
+        }
+        if (strlen($this->salasana) > 50) {
+            $errors = 'Liian pitkä salasana!';
         }
         return $errors;
     }
     
     public function validoi_email() {
         $errors = array();
-        if ($this->{validoi_merkkijonon_pituus}($this->kokemus, 6, 50)) {
-            $errors[] = $this->{validoi_merkkijonon_pituus}($this->kokemus, 6, 50);
+        if (strlen($this->email) < 6 || $this->email == null) {
+            $errors = 'Liian lyhyt email-osoite!';
+        }
+        if (strlen($this->email) > 50) {
+            $errors = 'Liian pitkä email-osoite!';
         }
         return $errors;
     }
