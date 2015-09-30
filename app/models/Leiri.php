@@ -18,7 +18,7 @@ class Leiri extends BaseModel {
                 'leirinnimi' => $rivi['leirinnimi'],
                 'alkupv' => $rivi['alkupv'],
                 'loppupv' => $rivi['loppupv'],
-                //'leirilaistenIka' => $rivi['leirilaistenIka'], nää räjähtävät jos ovat käytössä...
+                'leirilaistenika' => $rivi['leirilaistenika'],
                 //'paikka' => $rivi['paikka']
             ));
         }
@@ -38,7 +38,7 @@ class Leiri extends BaseModel {
                 'leirinnimi' => $rivi['leirinnimi'],
                 'alkupv' => $rivi['alkupv'],
                 'loppupv' => $rivi['loppupv'],
-                //'leirilaistenIka' => $rivi['leirilaistenIka'],
+                'leirilaistenika' => $rivi['leirilaistenika'],
                 //'paikka' => $rivi['paikka'],
             ));
             return $leiri;

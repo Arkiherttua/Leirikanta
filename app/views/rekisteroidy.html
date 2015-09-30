@@ -5,10 +5,21 @@
   Rekisteröidyttyäsi voit hakea leiriohjaajaksi tai -johtajaksi. <br>
   Protip: salasanoja ei ole vielä salattu kantaan, joten ÄLÄ KÄYTÄ minkään oikean vakavan sivuston salasanaa.
 
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  
+  
   <form method="post" action="{{base_path}}/rekisteroidy">
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input class="form-control" name = "tunnus" type="text">
+      <input class="form-control" name = "tunnus" type="text" value="{{kayttaja.tunnus}}">
     </div>
       
     <div class="form-group">
@@ -18,17 +29,17 @@
       
     <div class="form-group">
       <label>Etu- ja sukunimi</label>
-      <input class="form-control" name = "nimi" type="text">
+      <input class="form-control" name = "nimi" type="text" value="{{kayttaja.nimi}}">
     </div>
       
     <div class="form-group">
       <label>Sähköpostiosoite</label>
-      <input class="form-control" name = "email" type="text">
+      <input class="form-control" name = "email" type="text" value="{{kayttaja.email}}">
     </div>
 
     <div class="form-group">
       <label>Syntymäaika muodossa vvvv-kk-pp</label>
-      <input class="form-control" name = "syntymaaika" type="text">
+      <input class="form-control" name = "syntymaaika" type="text" value="{{kayttaja.syntymaaika}}">
     </div>
 
     <button type="submit" class="btn btn-primary">Rekisteröidy</button>

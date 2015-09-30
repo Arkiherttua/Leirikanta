@@ -5,6 +5,7 @@ class Kayttaja extends BaseModel {
     public $id, $tunnus, $nimi, $salasana, $email, $syntymaaika, $onkoJohtaja;
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoi_tunnus', 'validoi_salasana', 'validoi_email', 'validoi_syntymaaika');
     }
     
     public static function kaikki() {
@@ -21,7 +22,7 @@ class Kayttaja extends BaseModel {
                 'salasana' => $rivi['salasana'],
                 'email' => $rivi['email'],
                 'syntymaaika' => $rivi['syntymaaika'],
-                //'onkoJohtaja' => $rivi['onkoJohtaja']
+                'onkoJohtaja' => $rivi['onkojohtaja']
             ));
         }
         
@@ -44,7 +45,7 @@ class Kayttaja extends BaseModel {
                 'salasana' => $rivi['salasana'],
                 'email' => $rivi['email'],
                 'syntymaaika' => $rivi['syntymaaika'],
-                //'onkoJohtaja' => $rivi['onkoJohtaja']
+                'onkojohtaja' => $rivi['onkojohtaja']
             ));
             return $kayttaja;
         }
@@ -71,8 +72,7 @@ class Kayttaja extends BaseModel {
                 'salasana' => $rivi['salasana'],
                 'email' => $rivi['email'],
                 'syntymaaika' => $rivi['syntymaaika'],
-                //'onkoJohtaja' => $rivi['onkoJohtaja'], //korjataan joskus...
-                
+                'onkojohtaja' => $rivi['onkojohtaja']             
             ));
             return $kayttaja;
         } else {
@@ -84,11 +84,11 @@ class Kayttaja extends BaseModel {
     public function validoi_tunnus() {
         $errors = array();
         if (strlen($this->tunnus) < 4 || $this->tunnus == null) {
-            $errors = 'Liian lyhyt käyttäjätunnus!';
+            $errors[] = 'Liian lyhyt käyttäjätunnus!';
         }
         
         if (strlen($this->tunnus) > 50) {
-            $errors = 'Liian pitkä käyttäjätunnus!';
+            $errors[] = 'Liian pitkä käyttäjätunnus!';
         }
         return $errors;
     }
@@ -96,10 +96,10 @@ class Kayttaja extends BaseModel {
     public function validoi_salasana() {
         $errors = array();
         if (strlen($this->salasana) < 6 || $this->salasana == null) {
-            $errors = 'Liian lyhyt salasana!';
+            $errors[] = 'Liian lyhyt salasana!';
         }
         if (strlen($this->salasana) > 50) {
-            $errors = 'Liian pitkä salasana!';
+            $errors[] = 'Liian pitkä salasana!';
         }
         return $errors;
     }
@@ -107,19 +107,19 @@ class Kayttaja extends BaseModel {
     public function validoi_email() {
         $errors = array();
         if (strlen($this->email) < 6 || $this->email == null) {
-            $errors = 'Liian lyhyt email-osoite!';
+            $errors[] = 'Liian lyhyt email-osoite!';
         }
         if (strlen($this->email) > 50) {
-            $errors = 'Liian pitkä email-osoite!';
+            $errors[] = 'Liian pitkä email-osoite!';
         }
         return $errors;
     }
     
     public function validoi_syntymaaika() {
         $errors = array();
-        if (preg_match($this->syntymaaika, "\d\d\d\d[-]\d\d[-]\d\d")) {
-            $errors[] = 'Syntymäaika annettu väärässä muodossa!';
-        }
+//        if (preg_match($this->syntymaaika, '/^\d{4}\d{2}\d{2}$/')) {
+//            $errors[] = 'Syntymäaika annettu väärässä muodossa!';
+//        }
         return $errors;
     }
     

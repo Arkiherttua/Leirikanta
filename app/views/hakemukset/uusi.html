@@ -39,7 +39,7 @@
     </div>
     <div class="form-group">
       <label>Työkokemus</label>
-      <input class="form-control" name="kokemus" type="text">
+      <input class="form-control" name="kokemus" type="text" value="{{hakemus.kokemus}}">
     </div>
     <div class="form-group">
       <label>Vapaa kuvaus itsestäsi</label>
@@ -48,36 +48,18 @@
       <div>
           Mille leireille haluaisit? (Merkitse kaikki sopivat)
       </div>
-          
-  <div class="checkbox">
-  <label>
-    <input type="checkbox" value="">
-    Alkukesän lastenleiri Saaressa 1.-6.6.
-  </label>
-  </div>
-  <div class="checkbox">
-  <label>
-    <input type="checkbox" value="">
-    Loppukesän lastenleiri Saaressa 1.-6.8.
-  </label>
-  </div>
-      <br>
       
-     <div class="checkbox">
-  <label>
-    <input type="checkbox" value="">
-    Nuortenleiri Saaressa 1.-6.7.
-  </label>
-  </div>
-   <div class="checkbox">
-  <label>
-    <input type="checkbox" value="">
-    Päiväleiri Helsingissä 1.-6.8.
-  </label>
-  </div>
-      
-      <br>
-      
+    {% for leiri in leirit %}
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" value="">
+            <a href="{{base_path}}/leiri/{{leiri.id}}" target="_blank">{{leiri.leirinnimi}}</a><br>
+            </label>
+        </div>
+    {% endfor %}
+
+        
+
     <div class="form-group">
       <label>Kuinka monelle leirille haluaisit töihin kesän mittaan?</label>
       <input class="form-control" value="2" type="number">

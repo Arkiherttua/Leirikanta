@@ -13,8 +13,17 @@ class usercontroller extends BaseController{
             'syntymaaika' => $params['syntymaaika'],
             'onkoJohtaja' => 'false' //toiminee näin...
         ));
-        $kayttaja->tallenna();
-        Redirect::to('/', array('viesti' => 'Rekisteröityminen onnistui, nyt voit kirjautua sisään!'));
+        
+        $errors = $kayttaja->errors();
+        if (count($errors) == 0 ) {
+            $kayttaja->tallenna();
+            Redirect::to('/', array('viesti' => 'Rekisteröityminen onnistui, nyt voit kirjautua sisään!'));
+        } else {
+            View::make('/rekisteroidy.html', array('errors' => $errors, 'kayttaja' => $kayttaja));
+        }
+        
+        
+        
     }
     
     public static function login() { 

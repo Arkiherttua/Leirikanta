@@ -30,10 +30,10 @@
     public function errors(){
       $errors = array();
 
-      foreach($this->validators as $validator){
+      foreach($this->validators as $validator) {
           $validator_errors = $this->{$validator}();
           //$validator_errors = array($validator);
-          $errors = array_merge($errors, $validator_errors);
+          $errors = array_merge($errors, $this->{$validator}());
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
       }
 

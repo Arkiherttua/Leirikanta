@@ -52,18 +52,13 @@ class leiricontroller extends BaseController {
         ));
         $hakemus = new Hakemus($attributes);
         $errors = $hakemus->errors();
-        
-        $hakemus->tallenna();
-        Redirect::to('/hakemukset/hakemus/' . $hakemus->id, array('viesti' => 'Hakemus vastaanotettu.'));
-       
-        //eivät toimi joten poistettu toistaiseksi...
-        //
-//        if (count($errors) == 0 ) {
-//            $hakemus->tallenna();
-//            Redirect::to('/hakemukset/' . $hakemus->id, array('viesti' => 'Hakemus vastaanotettu.'));
-//        } else {
-//            View::make('/hakemukset/hakemus.html', array('errors' => $errors, 'attributes' => $attributes));
-//        }
+
+        if (count($errors) == 0 ) {
+            $hakemus->tallenna();
+            Redirect::to('/hakemukset/hakemus/' . $hakemus->id, array('viesti' => 'Hakemus vastaanotettu.'));
+        } else {
+            View::make('/hakemukset/uusi.html', array('errors' => $errors, 'hakemus' => hakemus));
+        }
             
     }
     

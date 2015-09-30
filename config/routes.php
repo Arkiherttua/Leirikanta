@@ -49,10 +49,10 @@
         leiricontroller::nayta_hakemus($id);
     });
     
-    //tää lienee turha
      $routes->get('/hakemukset/uusi', function() {
         HelloWorldController::hakemus();
   }); 
+  
     $routes->get('/leirilista', function() {
         leiricontroller::leirilista();
   });

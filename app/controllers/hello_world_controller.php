@@ -10,12 +10,13 @@
       View::make('helloworld.html');
     }
     
-        public static function hakemus(){
-      View::make('hakemukset/uusi.html');
+    public static function hakemus(){
+        $leirit = Leiri::kaikki();
+        View::make('hakemukset/uusi.html', array('leirit'=> $leirit));
     }
     
-        public static function leiri(){
-      View::make('leiri.html');
+    public static function leiri(){
+        View::make('leiri.html');
     }
     
         public static function leirilista(){
