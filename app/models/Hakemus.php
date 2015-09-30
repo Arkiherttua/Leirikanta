@@ -61,7 +61,7 @@ class Hakemus extends BaseModel {
     public function validoi_kokemus() {
         $errors = array();
         if (strlen($this->kokemus) < 2 || $this->kokemus == null) {
-            $errors = 'Liian lyhyt teksti kokemus-kentässä!';
+            $errors[] = 'Liian lyhyt teksti kokemus-kentässä!';
         }
 //        if ($this->validoi_merkkijonon_pituus($this->kokemus, 2, 10000)) {
 //            $errors[] = $this->validoi_merkkijonon_pituus($this->kokemus, 2, 10000);
@@ -72,7 +72,7 @@ class Hakemus extends BaseModel {
     public function validoi_kuvaus() {
         $errors = array();
         if (strlen($this->vapaaKuvaus) < 10 || $this->vapaaKuvaus == null) {
-            $errors = 'Liian lyhyt teksti kuvaus-kentässä!';
+            $errors[] = 'Liian lyhyt teksti kuvaus-kentässä!';
         }
         return $errors;
     }
