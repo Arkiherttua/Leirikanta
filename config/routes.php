@@ -42,24 +42,29 @@
   
   
     $routes->post('/hakemukset', function() {
-        leiricontroller::luo_hakemus();
+        Hakemuscontroller::luo_hakemus();
   });
   
     $routes->get('/hakemukset/hakemus/:id', function($id) {
-        leiricontroller::nayta_hakemus($id);
+        Hakemuscontroller::nayta_hakemus($id);
     });
     
      $routes->get('/hakemukset/uusi', function() {
-        HelloWorldController::hakemus();
+        Hakemuscontroller::hakemus();
   }); 
+ 
+    $routes->get('/hakemukset/hakemuslista', function() {
+        Hakemuscontroller::hakemuslista();
+  });
+  
+  
+  
+  
   
     $routes->get('/leirilista', function() {
         leiricontroller::leirilista();
   });
-        
-    $routes->get('/hakemukset/hakemuslista', function() {
-        leiricontroller::hakemuslista();
-  });
+         
   
     $routes->get('/leiripaikka', function() {
     HelloWorldController::leiripaikka();

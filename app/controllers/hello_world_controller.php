@@ -9,23 +9,23 @@
     public static function sandbox(){
       View::make('helloworld.html');
     }
+//    
+//    public static function hakemus(){
+//        $leirit = Leiri::kaikki();
+//        View::make('hakemukset/uusi.html', array('leirit'=> $leirit));
+//    }
     
-    public static function hakemus(){
-        $leirit = Leiri::kaikki();
-        View::make('hakemukset/uusi.html', array('leirit'=> $leirit));
-    }
-    
-    public static function leiri(){
-        View::make('leiri.html');
-    }
-    
-        public static function leirilista(){
-      View::make('leirilista.html');
-    }
-    
-        public static function leiripaikka(){
-      View::make('leiripaikka.html');
-    }
+//    public static function leiri(){
+//        View::make('leiri.html');
+//    }
+//    
+//        public static function leirilista(){
+//      View::make('leirilista.html');
+//    }
+//    
+//        public static function leiripaikka(){
+//      View::make('leiripaikka.html');
+//    }
     
         public static function profiilisivu(){
       View::make('profiilisivu.html');
