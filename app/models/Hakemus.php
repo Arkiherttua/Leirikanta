@@ -8,6 +8,12 @@ class Hakemus extends BaseModel {
         parent::__construct($attributes);
         $this->validators = array('validoi_kuvaus', 'validoi_kokemus');
     }
+    public function muokkaa() {
+        $query = DB::connection()->prepare('UPDATE Hakemus (kayttaja_id, kokemus, vapaaKuvaus) VALUES (:kayttaja_id, :kokemus, :vapaaKuvaus) RETURNING id');
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaaKuvaus' => $this->vapaaKuvaus));
+        $rivi = $query->fetch();
+        $this->id = $rivi['id'];
+    }
 
     public function tallenna() {
         $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaaKuvaus) VALUES (:kayttaja_id, :kokemus, :vapaaKuvaus) RETURNING id');

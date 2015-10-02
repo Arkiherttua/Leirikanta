@@ -8,6 +8,12 @@
     HelloWorldController::sandbox();
   });
   
+  
+  $routes->post('/logout', function(){
+      usercontroller::logout();
+      
+  });
+  
   $routes -> get('/kirjaudu', function() {
       usercontroller::login();
   });
@@ -39,6 +45,13 @@
   
   
   
+    $routes->post('/hakemukset/hakemus/:id/muokkaa', function($id) {
+        Hakemuscontroller::paivita();
+    });
+  
+    $routes->get('/hakemukset/hakemus/:id/muokkaa', function($id) {
+        Hakemuscontroller::muokkaa($id);
+    });  
   
   
     $routes->post('/hakemukset', function() {
