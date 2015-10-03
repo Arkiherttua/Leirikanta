@@ -13,7 +13,7 @@
     }
 
     public static function check_logged_in(){   
-         if (!isset($_SESSION['kayttaja'])) {
+      if (!isset($_SESSION['kayttaja'])) {
              Redirect::to('/kirjaudu', array('viesti' => 'Kirjautuminen vaadittu!'));
       }
     }

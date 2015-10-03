@@ -2,7 +2,7 @@
 
 class usercontroller extends BaseController{
     public static function logout(){
-        $_SESSION['user'] = null;
+        $_SESSION['kayttaja'] = null;
         Redirect::to('/kirjaudu', array('viesti' => 'Olet kirjautunut ulos.'));
     }
     

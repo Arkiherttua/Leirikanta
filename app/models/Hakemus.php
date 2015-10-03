@@ -2,22 +2,23 @@
 
 class Hakemus extends BaseModel {
 
-    public $id, $kayttaja_id, $kokemus, $vapaaKuvaus;
+    public $id, $kayttaja_id, $kokemus, $vapaakuvaus;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
         $this->validators = array('validoi_kuvaus', 'validoi_kokemus');
     }
+    
     public function muokkaa() {
-        $query = DB::connection()->prepare('UPDATE Hakemus (kayttaja_id, kokemus, vapaaKuvaus) VALUES (:kayttaja_id, :kokemus, :vapaaKuvaus) RETURNING id');
-        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaaKuvaus' => $this->vapaaKuvaus));
+        $query = DB::connection()->prepare('UPDATE Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaaKuvaus' => $this->vapaakuvaus));
         $rivi = $query->fetch();
         $this->id = $rivi['id'];
     }
 
     public function tallenna() {
-        $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaaKuvaus) VALUES (:kayttaja_id, :kokemus, :vapaaKuvaus) RETURNING id');
-        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaaKuvaus' => $this->vapaaKuvaus));
+        $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus));
         $rivi = $query->fetch();
         $this->id = $rivi['id'];
     }
@@ -40,7 +41,7 @@ class Hakemus extends BaseModel {
                 'id' => $rivi['id'],
                 'kayttaja_id' => $rivi['kayttaja_id'],
                 'kokemus' => $rivi['kokemus'],
-                    //'vapaaKuvaus' => $rivi['vapaaKuvaus'] //räjähtää jos toiminnassa...
+                'vapaakuvaus' => $rivi['vapaakuvaus'] 
             ));
         }
 
@@ -57,7 +58,7 @@ class Hakemus extends BaseModel {
                 'id' => $rivi['id'],
                 'kayttaja_id' => $rivi['kayttaja_id'],
                 'kokemus' => $rivi['kokemus'],
-                    //'vapaaKuvaus' => $rivi['vapaaKuvaus']
+                    'vapaakuvaus' => $rivi['vapaakuvaus']
             ));
             return $hakemus;
         }
@@ -77,7 +78,7 @@ class Hakemus extends BaseModel {
 
     public function validoi_kuvaus() {
         $errors = array();
-        if (strlen($this->vapaaKuvaus) < 10 || $this->vapaaKuvaus == null) {
+        if (strlen($this->vapaakuvaus) < 10 || $this->vapaakuvaus == null) {
             $errors[] = 'Liian lyhyt teksti kuvaus-kentässä!';
         }
         return $errors;

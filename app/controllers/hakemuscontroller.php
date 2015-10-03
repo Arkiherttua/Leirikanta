@@ -5,7 +5,8 @@ class Hakemuscontroller extends BaseController {
     public static function muokkaa($id) {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
-        View::make('hakemukset/muokkaa.html', array('attributes' => $hakemus));
+        View::make('hakemukset/hakemus/' . $id . '/muokkaa.html', array('hakemus' => $hakemus));
+        
     }
     
     public static function paivita($id) {
