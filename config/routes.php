@@ -46,17 +46,20 @@
   
   
     $routes->post('/hakemukset/hakemus/:id/muokkaa', function($id) {
-        Hakemuscontroller::paivita();
+        Hakemuscontroller::paivita($id);
     });
   
-    $routes->get('/hakemukset/hakemus/:id/muokkaa', function($id) {
+//    $routes->get('/hakemukset/hakemus/:id/muokkaa', function($id) {
+//        Hakemuscontroller::muokkaa($id);
+//    });  
+    
+    $routes->get('/hakemukset/muokkaa', function($id) {
         Hakemuscontroller::muokkaa($id);
     });  
-  
-  
+   
     $routes->post('/hakemukset', function() {
         Hakemuscontroller::luo_hakemus();
-  });
+    });
   
     $routes->get('/hakemukset/hakemus/:id', function($id) {
         Hakemuscontroller::nayta_hakemus($id);

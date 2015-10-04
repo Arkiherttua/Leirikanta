@@ -5,18 +5,18 @@ class Hakemuscontroller extends BaseController {
     public static function muokkaa($id) {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
-        View::make('hakemukset/hakemus/' . $id . '/muokkaa.html', array('hakemus' => $hakemus));
-        
+        View::make('hakemukset/muokkaa.html', array('hakemus' => $hakemus));
+        #View::make('hakemukset/hakemus/' . $id . '/muokkaa.html', array('hakemus' => $hakemus));
     }
     
     public static function paivita($id) {
         self::check_logged_in();
         $params = $_POST;
         $attributes = (array(
-            'kayttaja_id' => '1', //kaunista purkkaa
+            'kayttaja_id' => $id, //toimineeko
             'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
-            'vapaaKuvaus' => $params['vapaaKuvaus']
+            'vapaakuvaus' => $params['vapaakuvaus']
         ));
         $hakemus = new Hakemus($attributes);
         $errors = $hakemus->errors();
@@ -60,7 +60,7 @@ class Hakemuscontroller extends BaseController {
             'kayttaja_id' => '1', //kaunista purkkaa
             'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
-            'vapaaKuvaus' => $params['vapaaKuvaus']
+            'vapaakuvaus' => $params['vapaakuvaus']
         ));
         $hakemus = new Hakemus($attributes);
         $errors = $hakemus->errors();

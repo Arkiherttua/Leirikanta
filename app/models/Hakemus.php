@@ -11,7 +11,7 @@ class Hakemus extends BaseModel {
     
     public function muokkaa() {
         $query = DB::connection()->prepare('UPDATE Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
-        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaaKuvaus' => $this->vapaakuvaus));
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus));
         $rivi = $query->fetch();
         $this->id = $rivi['id'];
     }
@@ -58,7 +58,7 @@ class Hakemus extends BaseModel {
                 'id' => $rivi['id'],
                 'kayttaja_id' => $rivi['kayttaja_id'],
                 'kokemus' => $rivi['kokemus'],
-                    'vapaakuvaus' => $rivi['vapaakuvaus']
+                'vapaakuvaus' => $rivi['vapaakuvaus']
             ));
             return $hakemus;
         }

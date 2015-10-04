@@ -5,10 +5,13 @@
   Kokemus: {{hakemus.kokemus}}<br>
   Vapaa kuvaus: {{hakemus.vapaakuvaus}}<br>
   Leirit, joille olet hakenut: <br><br><br>
-  
-  <form method="post" action="{{base_path}}/hakemukset/{{hakemus.id}}/muokkaa" style="display: inline-block;">
+  <!--><form method="post" action="{{base_path}}/hakemukset/{{hakemus.id}}/muokkaa" style="display: inline-block;"> 
+ 
+  <form method="post" action="{{base_path}}/hakemukset/muokkaa" style="display: inline-block;">
       <button type="submit" class="btn btn-classic">Muokkaa hakemusta</button>
-  </form>
+  </form></-->
+  <a href="{{base_path}}/hakemukset/muokkaa" class="btn btn-default">Muokkaa hakemustasi</a>
+  
   <br><br>
   <form method="post" action="{{base_path}}/hakemukset/{{hakemus.id}}/poista" style="display: inline-block;">
       <button type="submit" class="btn btn-danger">Poista hakemus</button>
