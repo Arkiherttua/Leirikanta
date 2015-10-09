@@ -2,13 +2,20 @@
 
 class Hakemus extends BaseModel {
 
-    public $id, $kayttaja_id, $kokemus, $vapaakuvaus, $onkojohtaja;
+    public $id, $kayttaja_id, $kokemus, $vapaakuvaus;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
         $this->validators = array('validoi_kuvaus', 'validoi_kokemus');
     }
     
+    public function poista() {
+        $query = DB::connection()->prepare('DELETE FROM Hakemus WHERE id = :id');
+        $query->execute(array('id' => $this->id));
+        $rivi = $query->fetch();
+    }
+
+
     public function muokkaa() {
         $query = DB::connection()->prepare('UPDATE Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
         $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus));
@@ -17,8 +24,8 @@ class Hakemus extends BaseModel {
     }
 
     public function tallenna() {
-        $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaakuvaus, onkojohtaja) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus, FALSE) RETURNING id');
-        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus, 'onkojohtaja' => $this->onkojohtaja));
+        $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus));
         $rivi = $query->fetch();
         $this->id = $rivi['id'];
     }

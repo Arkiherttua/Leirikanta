@@ -49,9 +49,9 @@
         Hakemuscontroller::paivita($id);
     });
   
-//    $routes->get('/hakemukset/hakemus/:id/muokkaa', function($id) {
-//        Hakemuscontroller::muokkaa($id);
-//    });  
+    $routes->post('/hakemukset/hakemus/:id/poista', function($id) {
+        Hakemuscontroller::poista($id);
+    });  
     
     $routes->get('/hakemukset/muokkaa', function($id) {
         Hakemuscontroller::muokkaa($id);

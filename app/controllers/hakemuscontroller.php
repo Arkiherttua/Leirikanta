@@ -2,6 +2,13 @@
 
 class Hakemuscontroller extends BaseController {
     
+    public static function poista($id) {
+        self::check_logged_in();
+        $hakemus = new Hakemus(array('id'=> $id));
+        $hakemus->poista();
+        Redirect::to('/', array('viesti' => 'Hakemus poistettu.'));
+    }
+    
     public static function muokkaa($id) {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
@@ -56,8 +63,10 @@ class Hakemuscontroller extends BaseController {
     public static function luo_hakemus() {
         self::check_logged_in();
         $params = $_POST;
+        $kirjautunut_kayttaja = self::get_user_logged_in();
+        
         $attributes = (array(
-            'kayttaja_id' => self::get_user_logged_in(),
+            'kayttaja_id' => $kirjautunut_kayttaja->id,
             'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
             'vapaakuvaus' => $params['vapaakuvaus']
