@@ -52,7 +52,7 @@
     {% for leiri in leirit %}
         <div class="checkbox">
             <label>
-            <input type="checkbox" value="">
+            <input type="checkbox" name = "haetut_leirit[]" value="{{leiri.id}}">
             <a href="{{base_path}}/leiri/{{leiri.id}}" target="_blank">{{leiri.leirinnimi}}</a><br>
             </label>
         </div>

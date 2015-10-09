@@ -46,13 +46,7 @@ class Hakemuscontroller extends BaseController {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
         View::make('hakemukset/hakemus.html', array('hakemus'=> $hakemus));
-    }
-    
-    //turha?
-//    public function hakemus($id) {
-//        $hakemus = Hakemus::etsi($id);
-//        View::make('hakemukset/hakemus.html', array('hakemus'=> $hakemus));
-//    }  
+    } 
     
     public static function hakemuslista() {
         self::check_logged_in();
@@ -63,6 +57,7 @@ class Hakemuscontroller extends BaseController {
     public static function luo_hakemus() {
         self::check_logged_in();
         $params = $_POST;
+        $leirit_joille_hakee = $_POST['haetut_leirit'];
         $kirjautunut_kayttaja = self::get_user_logged_in();
         
         $attributes = (array(
@@ -76,11 +71,13 @@ class Hakemuscontroller extends BaseController {
 
         if (count($errors) == 0 ) {
             $hakemus->tallenna();
+            $hakemus->luo_ohjausvalitaulu($leirit_joille_hakee); //eli tallennetaan tieto minne leireille hakee
             Redirect::to('/hakemukset/hakemus/' . $hakemus->id, array('viesti' => 'Hakemus vastaanotettu.'));
         } else {
             View::make('/hakemukset/uusi.html', array('errors' => $errors, 'hakemus' => hakemus));
         }
             
     }
+    
 }
 

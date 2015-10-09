@@ -9,12 +9,23 @@ class Hakemus extends BaseModel {
         $this->validators = array('validoi_kuvaus', 'validoi_kokemus');
     }
     
-    public function poista() {
+    public static function luo_ohjausvalitaulu($leirit) {
+        foreach ($leirit as $leiri) {
+            
+            $query = DB::connection()->prepare('INSERT INTO Leiriohjaajuus (hakemus_id, leiri_id, onkovalittu, onkojohtaja) VALUES (:id, :leiri, FALSE, FALSE) RETURNING id');
+            //$query->execute();
+            //$query->execute(array('hakemus_id' => $this->hakemus_id, 'leiri_id' => $this->leiri, 'onkovalittu' => FALSE, 'onkojohtaja' => FALSE));
+            $query->execute(array('hakemus_id' => $this->hakemus_id, 'leiri_id' => $this->leiri));
+            $rivi = $query->fetch();
+            $this->id = $rivi['id'];
+        }
+    }
+
+        public function poista() {
         $query = DB::connection()->prepare('DELETE FROM Hakemus WHERE id = :id');
         $query->execute(array('id' => $this->id));
         $rivi = $query->fetch();
     }
-
 
     public function muokkaa() {
         $query = DB::connection()->prepare('UPDATE Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
