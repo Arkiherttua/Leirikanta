@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Kaikki kesän leiripaikat</h1>
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped table-bordered" style="width:400px">
     <thead>
       <tr>
         <th>Paikannimi</th>
         <th>sijainti</th>
-        <th>nettisivu</th>
+        <!--<th>nettisivu</th>-->
         <th>palkataanko leirille kokki</th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@
       <tr>
         <td><a href="{{base_path}}/leiripaikka/{{paikka.id}}">{{paikka.paikannimi}}</a></td>
         <td>{{paikka.sijainti}}</td>
-        <td>{{paikka.nettisivu}}</td>
+        <!--<td>{{paikka.nettisivu}}</td>-->
         <td>{{paikka.kokki}}</td>
       </tr>
         {% endfor %}

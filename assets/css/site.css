@@ -1,8 +1,9 @@
     
  
 body {
-    background-color: #88976D;
+    background-color: #5DAE5D;
 }
+
 
 
 
@@ -15,5 +16,10 @@ body {
 .navbar .container-fluid{
   max-width: 1200px;
   margin: 0px auto;
-  background-color: #CCD3C1;
+  background-color: #7fbf7f;
+}
+
+//ei toimi:
+li * {
+    color: #000000 !important;
 }
