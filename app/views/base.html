@@ -55,11 +55,14 @@
             <li><a href="/leirikanta/leiripaikat">Leiripaikat</a></li>
           </ul>
       {% if user_logged_in %}
-          <ul class="nav navbar-nav">
-            <li><a href="/leirikanta/hakemukset/hakemuslista">Kaikki hakemukset</a></li>
-          </ul>
             <ul class="nav navbar-nav">
-            <li><a href="/leirikanta/hakemukset/uusi">Tee hakemus</a></li>
+                <li><a href="/leirikanta/hakemukset/hakemuslista">Kaikki hakemukset</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/leirikanta/hakemukset/uusi">Tee hakemus</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/leirikanta/hakemukset/hakemus/{{get_user_logged_in}}">Oma hakemuksesi</a></li>
             </ul>
       {% endif %}
         </div>

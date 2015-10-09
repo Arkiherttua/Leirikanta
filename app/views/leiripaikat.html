@@ -14,7 +14,7 @@
     <tbody>
         {% for paikka in paikat %}
       <tr>
-        <td><a href="{{base_path}}/leiripaikka/{{paikka.id}}">Paikannimi{{paikka.paikannimi}}</a></td>
+        <td><a href="{{base_path}}/leiripaikka/{{paikka.id}}">{{paikka.paikannimi}}</a></td>
         <td>{{paikka.sijainti}}</td>
         <td>{{paikka.nettisivu}}</td>
         <td>{{paikka.kokki}}</td>

@@ -57,7 +57,7 @@ class Hakemuscontroller extends BaseController {
         self::check_logged_in();
         $params = $_POST;
         $attributes = (array(
-            'kayttaja_id' => '1', //kaunista purkkaa
+            'kayttaja_id' => self::get_user_logged_in(),
             'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
             'vapaakuvaus' => $params['vapaakuvaus']

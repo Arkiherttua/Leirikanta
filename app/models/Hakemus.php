@@ -2,7 +2,7 @@
 
 class Hakemus extends BaseModel {
 
-    public $id, $kayttaja_id, $kokemus, $vapaakuvaus;
+    public $id, $kayttaja_id, $kokemus, $vapaakuvaus, $onkojohtaja;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -17,8 +17,8 @@ class Hakemus extends BaseModel {
     }
 
     public function tallenna() {
-        $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaakuvaus) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus) RETURNING id');
-        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus));
+        $query = DB::connection()->prepare('INSERT INTO Hakemus (kayttaja_id, kokemus, vapaakuvaus, onkojohtaja) VALUES (:kayttaja_id, :kokemus, :vapaakuvaus, FALSE) RETURNING id');
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kokemus' => $this->kokemus, 'vapaakuvaus' => $this->vapaakuvaus, 'onkojohtaja' => $this->onkojohtaja));
         $rivi = $query->fetch();
         $this->id = $rivi['id'];
     }

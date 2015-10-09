@@ -6,12 +6,6 @@ class leiricontroller extends BaseController {
         $leirit = Leiri::kaikki();
         View::make('leirilista.html', array('leirit'=> $leirit));
     }
-    
-//    public static function hakemuslista() {
-//        $hakemukset = Hakemus::kaikki();
-//        View::make('hakemukset/hakemuslista.html', array('hakemukset'=> $hakemukset));
-//    }
-    
 
     public static function leiripaikat() {
         $paikat = Leiripaikka::kaikki();
@@ -23,9 +17,6 @@ class leiricontroller extends BaseController {
         View::make('leiripaikka.html', array('paikka'=> $paikka));
     }
     
-    
-    
-        //tätä modataan vielä:
     public function leiri($id) {
         $leiri = Leiri::etsi($id);
         View::make('leiri.html', array('leiri'=> $leiri));

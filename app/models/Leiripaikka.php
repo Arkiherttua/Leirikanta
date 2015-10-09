@@ -15,7 +15,7 @@ class Leiripaikka extends BaseModel{
         foreach ($rivit as $rivi) {
             $paikat[] = new Leiripaikka(array(
                 'id' => $rivi['id'],
-                'paikannnimi' => $rivi['paikannimi'],
+                'paikannimi' => $rivi['paikannimi'],
                 'sijainti' => $rivi['sijainti'],
                 'nettisivu' => $rivi['nettisivu'],
                 'kokki' => $rivi['kokki'],
@@ -35,7 +35,7 @@ class Leiripaikka extends BaseModel{
         if ($rivi) {
             $paikka = new Leiripaikka(array(
                 'id' => $rivi['id'],
-                'paikannnimi' => $rivi['paikannimi'],
+                'paikannimi' => $rivi['paikannimi'],
                 'sijainti' => $rivi['sijainti'],
                 'nettisivu' => $rivi['nettisivu'],
                 'kokki' => $rivi['kokki'],

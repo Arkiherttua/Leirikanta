@@ -1,6 +1,14 @@
 <?php
 
   class BaseController{
+      
+    public static function onko_johtaja() {
+        if (isset($_SESSION['kayttaja'])) {
+          $kayttaja_id = $_SESSION['kayttaja'];
+          return Kayttaja::onko_johtaja($kayttaja_id);
+        }
+        return FALSE;
+    }
 
     public static function get_user_logged_in(){
       if (isset($_SESSION['kayttaja'])) {

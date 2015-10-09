@@ -2,12 +2,25 @@
 
 
 class Kayttaja extends BaseModel {
-    public $id, $tunnus, $nimi, $salasana, $email, $syntymaaika, $onkoJohtaja;
+    public $id, $tunnus, $nimi, $salasana, $email, $syntymaaika, $onkojohtaja;
     public function __construct($attributes) {
         parent::__construct($attributes);
         $this->validators = array('validoi_tunnus', 'validoi_salasana', 'validoi_email', 'validoi_syntymaaika');
     }
     
+    public static function onko_johtaja($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
+        $query -> execute(array(('id') => $id));
+        $rivi = $query->fetch();
+        
+        if ($rivi) {
+            if ($rivi['onkojohtaja'] == true) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static function kaikki() {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja');
         $query->execute();
@@ -22,7 +35,7 @@ class Kayttaja extends BaseModel {
                 'salasana' => $rivi['salasana'],
                 'email' => $rivi['email'],
                 'syntymaaika' => $rivi['syntymaaika'],
-                'onkoJohtaja' => $rivi['onkojohtaja']
+                'onkojohtaja' => $rivi['onkojohtaja']
             ));
         }
         
