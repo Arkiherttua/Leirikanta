@@ -9,19 +9,21 @@ class Hakemus extends BaseModel {
         $this->validators = array('validoi_kuvaus', 'validoi_kokemus');
     }
     
-    public static function luo_ohjausvalitaulu($leirit) {
+    public function luo_ohjausvalitaulu($leirit) {
         foreach ($leirit as $leiri) {
-            
+            if (!is_int($leiri)) { //purkkaa, mutta nyt softa ei kaadu jos ei hae yhdellekään leirille
+                continue;
+            }
             $query = DB::connection()->prepare('INSERT INTO Leiriohjaajuus (hakemus_id, leiri_id, onkovalittu, onkojohtaja) VALUES (:id, :leiri, FALSE, FALSE) RETURNING id');
             //$query->execute();
             //$query->execute(array('hakemus_id' => $this->hakemus_id, 'leiri_id' => $this->leiri, 'onkovalittu' => FALSE, 'onkojohtaja' => FALSE));
-            $query->execute(array('hakemus_id' => $this->hakemus_id, 'leiri_id' => $this->leiri));
+            $query->execute(array('id' => $this->id, 'leiri' => $leiri));
             $rivi = $query->fetch();
-            $this->id = $rivi['id'];
+            //$this->id = $rivi['id'];
         }
     }
 
-        public function poista() {
+    public function poista() {
         $query = DB::connection()->prepare('DELETE FROM Hakemus WHERE id = :id');
         $query->execute(array('id' => $this->id));
         $rivi = $query->fetch();
@@ -64,6 +66,24 @@ class Hakemus extends BaseModel {
         }
 
         return $hakemukset;
+    }
+    
+    public static function etsi_kaikki_yhden_kayttajan($hakemus_id) {
+            $query = DB::connection()->prepare('SELECT leiri_id FROM Leiriohjaajuus WHERE hakemus_id = :hakemus_id');
+            $query->execute(array(('hakemus_id') => $hakemus_id));
+            $rivit = $query->fetchAll();
+            $leirit_joille_hakee = array();
+            if ($rivit) {
+                foreach ($rivit as $rivi) {
+                    $leiri_id = $rivi['leiri_id'];
+                    $query = DB::connection()->prepare('SELECT leirinnimi FROM Leiri WHERE id = :leiri_id LIMIT 1');
+                    $query->execute(array(('leiri_id') => $leiri_id));
+                    $rivi2 = $query->fetch();
+                    
+                    $leirit_joille_hakee[] = $rivi2['leirinnimi'];
+                }   
+            }
+            return $leirit_joille_hakee;
     }
 
     public static function etsi($id) {

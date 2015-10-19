@@ -9,6 +9,15 @@
         }
         return FALSE;
     }
+    
+    public static function get_user_logged_in_id(){
+      if (isset($_SESSION['kayttaja'])) {
+          $kayttaja_id = $_SESSION['kayttaja'];
+      
+          return $kayttaja_id;
+      }
+      return null;
+    }
 
     public static function get_user_logged_in(){
       if (isset($_SESSION['kayttaja'])) {

@@ -42,10 +42,19 @@ class Hakemuscontroller extends BaseController {
         View::make('hakemukset/uusi.html', array('leirit'=> $leirit));
     }
     
-    public function nayta_hakemus($id) {
+    //vanha versio, joka näyttää yhden hakemuksen, jonka id on annettu
+    
+//    public function nayta_hakemus($id) {
+//        self::check_logged_in();
+//        $hakemus = Hakemus::etsi($id);
+//        View::make('hakemukset/hakemus.html', array('hakemus'=> $hakemus));
+//    } 
+    
+        public function nayta_hakemus($id) {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
-        View::make('hakemukset/hakemus.html', array('hakemus'=> $hakemus));
+        $leirit_joille_hakee = Hakemus::etsi_kaikki_yhden_kayttajan($id);
+        View::make('hakemukset/hakemus.html', array('hakemus'=> $hakemus, 'leirit'=>$leirit_joille_hakee));
     } 
     
     public static function hakemuslista() {
@@ -57,24 +66,36 @@ class Hakemuscontroller extends BaseController {
     public static function luo_hakemus() {
         self::check_logged_in();
         $params = $_POST;
-        $leirit_joille_hakee = $_POST['haetut_leirit'];
+        
+        //itse asiassa näistä ei ole hyötyä, softa kaatuu anyway jos ei hae yhdellekään leirille...
+        if ($_POST['haetut_leirit'] != null) {
+            $leirit_joille_hakee = $_POST['haetut_leirit'];
+        } else {
+            $leirit_joille_hakee = null;
+        }
+        
         $kirjautunut_kayttaja = self::get_user_logged_in();
         
         $attributes = (array(
             'kayttaja_id' => $kirjautunut_kayttaja->id,
-            'nimi' => $params['nimi'],
+            //'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
             'vapaakuvaus' => $params['vapaakuvaus']
         ));
         $hakemus = new Hakemus($attributes);
         $errors = $hakemus->errors();
+        
+        if ($leirit_joille_hakee == null) {
+            $errors = array_merge($errors, 'Hae ainakin yhdelle leirille!');
+        }
 
         if (count($errors) == 0 ) {
             $hakemus->tallenna();
             $hakemus->luo_ohjausvalitaulu($leirit_joille_hakee); //eli tallennetaan tieto minne leireille hakee
             Redirect::to('/hakemukset/hakemus/' . $hakemus->id, array('viesti' => 'Hakemus vastaanotettu.'));
         } else {
-            View::make('/hakemukset/uusi.html', array('errors' => $errors, 'hakemus' => hakemus));
+            $leirit = Leiri::kaikki();
+            View::make('/hakemukset/uusi.html', array('errors' => $errors, 'hakemus' => $hakemus, 'leirit' => $leirit));
         }
             
     }

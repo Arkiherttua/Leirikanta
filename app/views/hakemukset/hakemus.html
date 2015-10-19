@@ -2,9 +2,13 @@
 {% block content %}
   <h1>Lähettämäsi hakemus</h1>
   
-  Kokemus: {{hakemus.kokemus}}<br>
-  Vapaa kuvaus: {{hakemus.vapaakuvaus}}<br>
-  Leirit, joille olet hakenut: <br><br><br>
+  <b>Kokemus:</b> {{hakemus.kokemus}}<br>
+  <b>Vapaa kuvaus:</b> {{hakemus.vapaakuvaus}}<br>
+  <b>Leirit, joille olet hakenut:</b> <br>
+  {% for leiri in leirit %}
+    &emsp; {{ leiri }}<br>
+  {% endfor %}
+  <br><br>
   <!--><form method="post" action="{{base_path}}/hakemukset/{{hakemus.id}}/muokkaa" style="display: inline-block;"> 
  
   <form method="post" action="{{base_path}}/hakemukset/muokkaa" style="display: inline-block;">

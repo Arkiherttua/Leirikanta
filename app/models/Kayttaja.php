@@ -8,6 +8,8 @@ class Kayttaja extends BaseModel {
         $this->validators = array('validoi_tunnus', 'validoi_salasana', 'validoi_email', 'validoi_syntymaaika');
     }
     
+    
+    
     public static function onko_johtaja($id) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
         $query -> execute(array(('id') => $id));
@@ -42,9 +44,9 @@ class Kayttaja extends BaseModel {
         return $kayttajat;
     }
     
-    
-    
-    
+
+
+
     public static function etsi($id) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
         $query -> execute(array(('id') => $id));
