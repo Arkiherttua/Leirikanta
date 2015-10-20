@@ -4,6 +4,8 @@ Avaa sovellus osoitteessa http://ainohaav.users.cs.helsinki.fi/leirikanta
 
 Pääsivulta pääset kirjautumaan sisään, tai rekisteröitymään, jos sinulla ei vielä ole käyttäjätunnusta.
 
-Rekisteröityessä kerätään vain minimitiedot, kuten sähköpostisoite (yhteydenpitoa varten) ja syntymäaika (jotta leireille osataan palkata eri ikäisiä). Hakemusta tehdessä näitä tietoja ei tarvitse syöttää uudelleen, vaan perustelut, miksi sopisi ohjaajaksi, ja tieto mille leireille haluaa, riittävät. Jälkimmäistä ei vielä tallenneta tietokantaan.
+Voit käyttää testaamiseen käyttäjätunnusta kayttaja, salasana on salasana.
 
-Tällä hetkellä kaikkia tietoja pääsevät selaamaan kaikki, tulevaisuudessa leireistä ja leiripaikoista osaa tiedoista pääsevät selaamaan kaikki ja osaa vain kirjautuneet. Toistaiseksi hakemuksiakin pääsevät selaamaan kaikki, jatkossa niitä voivat selata vain ne kirjautuneet käyttäjät, jotka on nimetty leirinjohtajiksi.
+Rekisteröityessä kerätään vain minimitiedot, kuten sähköpostisoite (yhteydenpitoa varten) ja syntymäaika (jotta leireille osataan palkata eri ikäisiä). Hakemusta tehdessä näitä tietoja ei tarvitse syöttää uudelleen, vaan perustelut, miksi sopisi ohjaajaksi, ja tieto mille leireille haluaa, riittävät.
+
+Osaa tiedoista pääsevät selaamaan kaikki, osaa vain kirjautuneet ja osaa vain leirinjohtajiksi valitut käyttäjät. Tulevaisuudessa toteutetaan myös erillinen admin-käyttöliittymä.

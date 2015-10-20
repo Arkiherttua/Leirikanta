@@ -13,11 +13,6 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://ainohaav.users.cs.helsinki.fi/leirikanta/)
 * [Linkki dokumentaatiooni](https://github.com/Arkiherttua/Leirikanta/blob/master/doc/dokumentaatio.pdf)
 
-Linkkejä sivuille:
-* [Linkki listaan leireistä](http://ainohaav.users.cs.helsinki.fi/leirikanta/leirilista)
-* [Linkki hakemussivulle](http://ainohaav.users.cs.helsinki.fi/leirikanta/hakemukset/hakemus)
-* [Linkki listaan hakemuksista](http://ainohaav.users.cs.helsinki.fi/leirikanta/hakemukset/hakemuslista)
-* [Linkki kirjautumissivulle](http://ainohaav.users.cs.helsinki.fi/leirikanta/kirjaudu)
 
 ## Työn aihe
 
