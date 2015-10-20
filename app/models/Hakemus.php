@@ -48,13 +48,13 @@ class Hakemus extends BaseModel {
         $query->execute();
         $rivit = $query->fetchAll();
         $hakemukset = array();
-
-        //käyttäjän tiedot mukaan!
-        $query2 = DB::connection()->prepare('SELECT nimi, Kayttaja.id, kayttaja_id FROM Kayttaja, Hakemus WHERE Kayttaja.id = kayttaja_id');
-        $query2->execute();
-        $rivit2 = $query2->fetchAll();
-        $idt = array();
-        //nämä Hakemus-olion muuttujaan talteen, tai vielä mieluummin tietty käyttäjän oikea nimi
+// //käyttäjän tiedot mukaan!
+//        $query2 = DB::connection()->prepare('SELECT nimi, Kayttaja.id, kayttaja_id FROM Kayttaja, Hakemus WHERE Kayttaja.id = kayttaja_id');
+//        $query2->execute();
+//        $rivit2 = $query2->fetchAll();
+//        $idt = array();
+//        //nämä Hakemus-olion muuttujaan talteen, tai vielä mieluummin tietty käyttäjän oikea nimi
+//       
 
         foreach ($rivit as $rivi) {
             $hakemukset[] = new Hakemus(array(
@@ -71,10 +71,11 @@ class Hakemus extends BaseModel {
     public static function kaikki_nimineen()  {
         $hakemukset = Hakemus::kaikki();
         $hakemukset_nimineen = array();
+        $i = 1;
         foreach ($hakemukset as $hakemus) {
             $nimi = Hakemus::etsi_nimi($hakemus->id);
-            $hakemukset_nimineen[$nimi] = $hakemus;   
-            echo $nimi;
+            $hakemukset_nimineen[$i + '. ' + $nimi] = $hakemus;
+            $i = $i + 1;
         }
         return $hakemukset_nimineen;
     }

@@ -55,9 +55,11 @@
             <li><a href="/leirikanta/leiripaikat">Leiripaikat</a></li>
           </ul>
       {% if user_logged_in %}
-            <ul class="nav navbar-nav">
-                <li><a href="/leirikanta/hakemukset/hakemuslista">Kaikki hakemukset</a></li>
-            </ul>
+            {% if onko_johtaja %}
+                <ul class="nav navbar-nav">
+                    <li><a href="/leirikanta/hakemukset/hakemuslista">Kaikki hakemukset</a></li>
+                </ul>
+            {% endif %}
             <ul class="nav navbar-nav">
                 <li><a href="/leirikanta/hakemukset/uusi">Tee hakemus</a></li>
             </ul>

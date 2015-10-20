@@ -53,9 +53,9 @@ class Hakemuscontroller extends BaseController {
         self::check_logged_in();
         //$hakemukset = Hakemus::kaikki();
         $hakemukset = Hakemus::kaikki_nimineen();
-        $nimet = array();
-
-        View::make('hakemukset/hakemuslista.html', array('hakemukset'=> $hakemukset));
+        if (self::onko_johtaja()) {
+            View::make('hakemukset/hakemuslista.html', array('hakemukset'=> $hakemukset));
+        }
     }
     
     public static function luo_hakemus() {

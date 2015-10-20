@@ -14,7 +14,7 @@
     <tbody>
         {% for hakemus in hakemukset %}
       <tr>
-        <td><a href="{{base_path}}/hakemukset/hakemus/{{hakemus.id}}">Hakijan nimi: {{hakemus.nimi}}</a></td>
+        <td><a href="{{base_path}}/hakemukset/hakemus/{{hakemus.id}}">Hakijan nimi{{hakemus[nimi]}}</a></td>
         <td>{{hakemus.kokemus}}</td>
         <td>{{hakemus.vapaakuvaus}}</td>
       </tr>
