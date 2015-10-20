@@ -69,7 +69,7 @@ class Kayttaja extends BaseModel {
      
     
     public function tallenna() {
-        $query = DB::connection()->prepare('INSERT INTO Kayttaja (tunnus, nimi, salasana, email, syntymaaika) VALUES (:tunnus, :nimi, :salasana, :email, :syntymaaika) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Kayttaja (tunnus, nimi, salasana, email, syntymaaika, onkojohtaja) VALUES (:tunnus, :nimi, :salasana, :email, :syntymaaika, FALSE) RETURNING id');
         $query->execute(array('tunnus' => $this->tunnus, 'nimi' => $this->nimi, 'salasana' => $this->salasana, 'email'=> $this->email, 'syntymaaika' => $this->syntymaaika));
         $rivi = $query->fetch();
         $this->id = $rivi['id'];

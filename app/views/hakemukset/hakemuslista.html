@@ -8,17 +8,15 @@
         <th>Hakijan nimi</th>
         <th>Kokemus</th>
         <th>Vapaa kuvaus</th>
-        <th>Leirit, joille hakee</th>
       </tr>
     </thead>
 
     <tbody>
         {% for hakemus in hakemukset %}
       <tr>
-        <td><a href="{{base_path}}/hakemukset/hakemus/{{hakemus.id}}">Hakijan nimi</a></td>
+        <td><a href="{{base_path}}/hakemukset/hakemus/{{hakemus.id}}">Hakijan nimi: {{hakemus.nimi}}</a></td>
         <td>{{hakemus.kokemus}}</td>
         <td>{{hakemus.vapaakuvaus}}</td>
-        <td>Leirit, joille hakee</td>
       </tr>
         {% endfor %}
     </tbody>

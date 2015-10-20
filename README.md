@@ -1,7 +1,10 @@
 # Tietokantasovelluksen esittelysivu
 
-* Käyttäjätunnus kirjautumiseen: paavo
-* Salasana: paavo
+* Käyttäjätunnus kirjautumiseen: kayttaja
+* Salasana: salasana
+
+* "Johtaja"-tunnus: johtaja
+* Salasana: salasana
 
 [Käyttöohje](https://github.com/Arkiherttua/Leirikanta/blob/master/doc/ohje.txt)
 

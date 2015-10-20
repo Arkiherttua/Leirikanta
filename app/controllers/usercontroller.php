@@ -14,7 +14,7 @@ class usercontroller extends BaseController{
             'salasana' => $params['salasana'],
             'email' => $params['email'],
             'syntymaaika' => $params['syntymaaika'],
-            'onkoJohtaja' => 'false' //toiminee näin...
+            'onkojohtaja' => false //toiminee näin...
         ));
         
         $errors = $kayttaja->errors();

@@ -12,6 +12,7 @@ class Hakemus extends BaseModel {
     public function luo_ohjausvalitaulu($leirit) {
         foreach ($leirit as $leiri) {
             if (!is_int($leiri)) { //purkkaa, mutta nyt softa ei kaadu jos ei hae yhdellekään leirille
+                echo 'et hakenut yhdellekään leirille...';
                 continue;
             }
             $query = DB::connection()->prepare('INSERT INTO Leiriohjaajuus (hakemus_id, leiri_id, onkovalittu, onkojohtaja) VALUES (:id, :leiri, FALSE, FALSE) RETURNING id');
@@ -19,7 +20,6 @@ class Hakemus extends BaseModel {
             //$query->execute(array('hakemus_id' => $this->hakemus_id, 'leiri_id' => $this->leiri, 'onkovalittu' => FALSE, 'onkojohtaja' => FALSE));
             $query->execute(array('id' => $this->id, 'leiri' => $leiri));
             $rivi = $query->fetch();
-            //$this->id = $rivi['id'];
         }
     }
 
@@ -66,6 +66,28 @@ class Hakemus extends BaseModel {
         }
 
         return $hakemukset;
+    }
+    
+    public static function kaikki_nimineen()  {
+        $hakemukset = Hakemus::kaikki();
+        $hakemukset_nimineen = array();
+        foreach ($hakemukset as $hakemus) {
+            $nimi = Hakemus::etsi_nimi($hakemus->id);
+            $hakemukset_nimineen[$nimi] = $hakemus;   
+            echo $nimi;
+        }
+        return $hakemukset_nimineen;
+    }
+
+
+    public static function etsi_nimi($id) {
+        $query = DB::connection()->prepare('SELECT nimi FROM Kayttaja WHERE Kayttaja.id = (SELECT Hakemus.kayttaja_id FROM Hakemus WHERE id = :id) LIMIT 1');
+        $query->execute(array(('id') => $id));
+        $rivi = $query->fetch();
+        if ($rivi) {
+            return $rivi['nimi'];
+        }
+        return null;
     }
     
     public static function etsi_kaikki_yhden_kayttajan($hakemus_id) {

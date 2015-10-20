@@ -42,14 +42,6 @@ class Hakemuscontroller extends BaseController {
         View::make('hakemukset/uusi.html', array('leirit'=> $leirit));
     }
     
-    //vanha versio, joka näyttää yhden hakemuksen, jonka id on annettu
-    
-//    public function nayta_hakemus($id) {
-//        self::check_logged_in();
-//        $hakemus = Hakemus::etsi($id);
-//        View::make('hakemukset/hakemus.html', array('hakemus'=> $hakemus));
-//    } 
-    
         public function nayta_hakemus($id) {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
@@ -59,26 +51,21 @@ class Hakemuscontroller extends BaseController {
     
     public static function hakemuslista() {
         self::check_logged_in();
-        $hakemukset = Hakemus::kaikki();
+        //$hakemukset = Hakemus::kaikki();
+        $hakemukset = Hakemus::kaikki_nimineen();
+        $nimet = array();
+
         View::make('hakemukset/hakemuslista.html', array('hakemukset'=> $hakemukset));
     }
     
     public static function luo_hakemus() {
         self::check_logged_in();
-        $params = $_POST;
-        
-        //itse asiassa näistä ei ole hyötyä, softa kaatuu anyway jos ei hae yhdellekään leirille...
-        if ($_POST['haetut_leirit'] != null) {
-            $leirit_joille_hakee = $_POST['haetut_leirit'];
-        } else {
-            $leirit_joille_hakee = null;
-        }
-        
+        $params = $_POST;        
+        $leirit_joille_hakee = $_POST['haetut_leirit'];
         $kirjautunut_kayttaja = self::get_user_logged_in();
         
         $attributes = (array(
             'kayttaja_id' => $kirjautunut_kayttaja->id,
-            //'nimi' => $params['nimi'],
             'kokemus' => $params['kokemus'],
             'vapaakuvaus' => $params['vapaakuvaus']
         ));
@@ -88,7 +75,6 @@ class Hakemuscontroller extends BaseController {
         if ($leirit_joille_hakee == null) {
             $errors = array_merge($errors, 'Hae ainakin yhdelle leirille!');
         }
-
         if (count($errors) == 0 ) {
             $hakemus->tallenna();
             $hakemus->luo_ohjausvalitaulu($leirit_joille_hakee); //eli tallennetaan tieto minne leireille hakee
