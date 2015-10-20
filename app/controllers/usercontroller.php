@@ -1,6 +1,19 @@
 <?php
 
 class usercontroller extends BaseController{
+    
+//    public static function profiilisivu(){
+//      View::make('profiilisivu.html');
+//    }
+    
+    public static function kirjaudu(){
+      View::make('kirjaudu.html');
+    }
+    
+    public static function rekisteroidy(){
+      View::make('rekisteroidy.html');
+    }
+    
     public static function logout(){
         $_SESSION['kayttaja'] = null;
         Redirect::to('/kirjaudu', array('viesti' => 'Olet kirjautunut ulos.'));

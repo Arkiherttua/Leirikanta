@@ -1,11 +1,11 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    general_controller::index();
   });
 
   $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+    general_controller::sandbox();
   });
   
   
@@ -82,18 +82,14 @@
   });
          
   
-    $routes->get('/leiripaikka', function() {
-    HelloWorldController::leiripaikka();
+  $routes->get('/profiilisivu', function() {
+          usercontroller::profiilisivu();
   });
   
-    $routes->get('/profiilisivu', function() {
-    HelloWorldController::profiilisivu();
+  $routes->get('/kirjaudu', function() {
+          usercontroller::kirjaudu();
   });
   
-      $routes->get('/kirjaudu', function() {
-    HelloWorldController::kirjaudu();
-  });
-  
-      $routes->get('/rekisteroidy', function() {
-    HelloWorldController::rekisteroidy();
+  $routes->get('/rekisteroidy', function() {
+          usercontroller::rekisteroidy();
   });

@@ -42,7 +42,7 @@ class Hakemuscontroller extends BaseController {
         View::make('hakemukset/uusi.html', array('leirit'=> $leirit));
     }
     
-        public function nayta_hakemus($id) {
+    public function nayta_hakemus($id) {
         self::check_logged_in();
         $hakemus = Hakemus::etsi($id);
         $leirit_joille_hakee = Hakemus::etsi_kaikki_yhden_kayttajan($id);
